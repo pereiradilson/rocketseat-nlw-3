@@ -14,6 +14,7 @@ Visit orphanages and change many children's day.
 
 - [Node LTS](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/pt-BR/)
+- [Docker](https://docs.docker.com/get-docker/)
 
 ## Cloning project
 
@@ -27,7 +28,37 @@ Visit orphanages and change many children's day.
 
 ```
 
-## Install front-end
+## Install and configure docker to PostgreSQL
+
+```bash
+
+  # Create database postgre
+  $ docker run --name database -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -p 5432:5432 bitnami/postgresql:latest
+
+```
+
+## Install backend
+
+```bash
+
+  # Enter folder
+  $ cd backend
+
+  # Install dependences
+  $ yarn
+
+  # Configure database
+  $ mv ormconfig.example.json ormconfig.json
+
+  # Open the ormconfig.json file and change the connection data
+  $ code ormconfig.json
+
+  # Execute
+  $ yarn dev
+
+```
+
+## Install frontend
 
 ```bash
 
@@ -37,14 +68,14 @@ Visit orphanages and change many children's day.
   # Install dependences
   $ yarn
 
-  #Execute
+  # Execute
   $ yarn start
 
 ```
 
 ## Authors
 
-* **Adilson Pereira** - [LinkedIn](https://www.linkedin.com/in/pereiradilson/)
+- **Adilson Pereira** - [LinkedIn](https://www.linkedin.com/in/pereiradilson/)
 
 ## License
 
