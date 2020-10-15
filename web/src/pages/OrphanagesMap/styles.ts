@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Aside = styled.aside`
   width: 440px;
-  background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+  background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%);
   padding: 80px;
 
   display: flex;
@@ -20,7 +20,7 @@ export const Aside = styled.aside`
 
 export const Header = styled.header``;
 
-export const HeaderImg  = styled.img``;
+export const HeaderImg = styled.img``;
 
 export const HeaderTitle = styled.h2`
   font-size: 40px;
@@ -68,4 +68,16 @@ export const CreateOrphanage = styled.a`
   &:hover {
     background: #17e6eb;
   }
+`;
+
+export const PopupLink = styled.a`
+  width: 40px;
+  height: 40px;
+  background: #15c3d6;
+  box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
