@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -147,7 +147,18 @@ export const OpenDetailsOnWeekends = styled.div`
   }
 `;
 
-export const ContactButton = styled.button`
+export const OpenDetailsOnWeekendsDontOpen = styled.div`
+  background: linear-gradient(154.16deg, #fcf0f4 7.85%, #ffffff 91.03%);
+  border: 1px solid #ffbcd4;
+  color: #ff669d;
+
+  > svg {
+    display: block;
+    margin-bottom: 20px;
+  }
+`;
+
+export const ContactButton = styled.a`
   margin-top: 64px;
 
   width: 100%;
@@ -158,6 +169,7 @@ export const ContactButton = styled.button`
   border-radius: 20px;
   color: #ffffff;
   font-weight: 800;
+  text-decoration: none;
 
   display: flex;
   justify-content: center;

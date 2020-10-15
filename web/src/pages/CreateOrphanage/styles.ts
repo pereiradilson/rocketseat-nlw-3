@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -7,6 +7,11 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   flex: 1;
+`;
+
+export const MapContainer = styled.div`
+  border: 1px solid #d3e2e5;
+  border-radius: 20px;
 `;
 
 export const CreateOrphanageForm = styled.form`
@@ -39,7 +44,7 @@ export const FormLegend = styled.legend`
   font-weight: 700;
 
   border-bottom: 1px solid #d3e2e5;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   padding-bottom: 24px;
 `;
 
@@ -63,38 +68,33 @@ export const InputBlock = styled.div`
       line-height: 24px;
     }
   }
+`;
 
-  > input,
-  textarea {
-    width: 100%;
-    background: #f5f8fa;
-    border: 1px solid #d3e2e5;
-    border-radius: 20px;
-    outline: none;
-    color: #5c8599;
-  }
+export const ImagesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 16px;
 
   > input {
-    height: 64px;
-    padding: 0 16px;
-  }
-
-  > textarea {
-    min-height: 120px;
-    max-height: 240px;
-    resize: vertical;
-    padding: 16px;
-    line-height: 28px;
+    display: none;
   }
 `;
 
-export const NewImage = styled.button`
+export const NewImage = styled.label`
   width: 100%;
-  height: 64px;
+  height: 96px;
   background: #f5f8fa;
   border: 1px dashed #96d2f0;
   border-radius: 20px;
   cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ButtonSelect = styled.div`
@@ -121,6 +121,10 @@ export const ButtonSelect = styled.div`
     &:last-child {
       border-radius: 0 20px 20px 0;
       border-left: 0;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 `;
@@ -149,5 +153,30 @@ export const ConfirmButton = styled.button`
 
   &:hover {
     background: #36cf82;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const PreviewImage = styled.img`
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 20px;
+`;
+
+export const Errors = styled.div`
+  color: #ff669d;
+
+  background: linear-gradient(154.16deg, #fcf0f4 7.85%, #ffffff 91.03%);
+  border: 1px solid #ffbcd4;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  > ul {
+    list-style-type: none;
   }
 `;

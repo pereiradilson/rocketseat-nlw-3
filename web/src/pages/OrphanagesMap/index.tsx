@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import Leaflet from "leaflet";
+import Leaflet from 'leaflet';
 
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 
-import { 
+import {
   Container,
   Aside,
   Header,
-  HeaderImg, 
+  HeaderImg,
   HeaderTitle,
   HeaderDescription,
   Footer,
@@ -53,9 +53,7 @@ const OrphanagesMap: React.FC = () => {
         <Header>
           <HeaderImg src={mapMarkerImg} alt="Happy" />
 
-          <HeaderTitle>
-            Escolha um orfanato no mapa
-          </HeaderTitle>
+          <HeaderTitle>Escolha um orfanato no mapa</HeaderTitle>
           <HeaderDescription>
             Muitas crianças estão esperando a sua visita :)
           </HeaderDescription>
@@ -67,24 +65,24 @@ const OrphanagesMap: React.FC = () => {
         </Footer>
       </Aside>
 
-      <Map 
-        center={[-28.6706196,-49.3853711]}
-        zoom={13}
+      <Map
+        center={[-28.678866022295527, -49.369329214096076]}
+        zoom={12}
         style={{ width: '100%', height: '100%' }}
       >
-        <TileLayer 
+        <TileLayer
           url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
         />
 
         {orphanages.map(orphanage => (
-          <Marker 
-            key={orphanage.id} 
-            icon={mapIcon} 
+          <Marker
+            key={orphanage.id}
+            icon={mapIcon}
             position={[orphanage.latitude, orphanage.longitude]}
           >
-            <Popup 
-              closeButton={false} 
-              minWidth={240} 
+            <Popup
+              closeButton={false}
+              minWidth={240}
               maxWidth={240}
               className="map-popup"
             >
@@ -92,11 +90,9 @@ const OrphanagesMap: React.FC = () => {
               <PopupLink as={Link} to={`/orphanages/${orphanage.id}`}>
                 <FiArrowRight size={20} color="#FFF" />
               </PopupLink>
-
             </Popup>
           </Marker>
         ))}
-
       </Map>
 
       <CreateOrphanage as={Link} to="/orphanages/create">
@@ -104,6 +100,6 @@ const OrphanagesMap: React.FC = () => {
       </CreateOrphanage>
     </Container>
   );
-}
+};
 
 export default OrphanagesMap;

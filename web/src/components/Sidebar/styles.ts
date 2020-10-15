@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div``;
 
@@ -39,5 +39,9 @@ export const AsideButton = styled.button`
 
   &:hover {
     background: #17d6eb;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
