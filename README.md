@@ -15,6 +15,7 @@ Visit orphanages and change many children's day.
 - [Node LTS](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/pt-BR/)
 - [Docker](https://docs.docker.com/get-docker/)
+- [Expo](https://expo.io/learn)
 
 ## Cloning project
 
@@ -64,6 +65,21 @@ Visit orphanages and change many children's day.
 
   # Enter folder
   $ cd web
+
+  # Install dependences
+  $ yarn
+
+  # Execute
+  $ yarn start
+
+```
+
+## Install mobile
+
+```bash
+
+  # Enter folder
+  $ cd mobile
 
   # Install dependences
   $ yarn
