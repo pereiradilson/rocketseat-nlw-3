@@ -32,7 +32,7 @@ const OrphanagesMap: React.FC = () => {
     api.get('orphanages').then(response => {
       setOrphanages(response.data);
     });
-  }, [orphanages]);
+  }, [orphanages, navigation]);
 
   const handleNavigateToOrphanageDetails = useCallback((id: number) => {
     navigation.navigate('OrphanageDetails', { id });

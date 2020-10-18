@@ -97,8 +97,6 @@ const CreateOrphanage: React.FC = () => {
           formData.append('images', image);
         });
 
-        console.log(data.whatsapp);
-
         const schema = Yup.object().shape({
           latitude: Yup.number().notOneOf([0], 'Selecione um ponto no mapa.'),
           name: Yup.string().required('O campo nome é obrigatório.'),

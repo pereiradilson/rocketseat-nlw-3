@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
@@ -17,14 +17,6 @@ const Input: React.FC<InputProps> = ({ name, onChangeText, ...rest }) => {
   const { fieldName, registerField, defaultValue = '', error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
-  const handleOnChange = useCallback(
-    text => {
-      if (inputValueRef.current) inputValueRef.current.value = text;
-      if (onChangeText) onChangeText(text);
-    },
-    [onChangeText],
-  );
-
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -37,7 +29,9 @@ const Input: React.FC<InputProps> = ({ name, onChangeText, ...rest }) => {
     <InputBlock
       ref={inputRef}
       defaultValue={defaultValue}
-      onChangeText={handleOnChange}
+      onChangeText={value => {
+        inputValueRef.current.value = value;
+      }}
       {...rest}
     />
   );

@@ -71,6 +71,10 @@ const OrphanageDetails: React.FC = () => {
     );
   }, [orphanage]);
 
+  const handleOpenWhatsApp = useCallback(() => {
+    Linking.openURL(`whatsapp://send?phone=${orphanage?.whatsapp}`);
+  }, [orphanage]);
+
   if (!orphanage) {
     return (
       <Container>
@@ -158,7 +162,7 @@ const OrphanageDetails: React.FC = () => {
           )}
         </ScheduleContainer>
 
-        <ContactButton onPress={() => {}}>
+        <ContactButton onPress={handleOpenWhatsApp}>
           <FontAwesome name="whatsapp" size={24} color="#FFF" />
           <ContactButtonText>Entrar em contato</ContactButtonText>
         </ContactButton>

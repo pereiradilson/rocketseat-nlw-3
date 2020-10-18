@@ -1,38 +1,45 @@
-import React, { useState, useCallback } from 'react';
-import {
-  TextInputMask,
-  TextInputMaskProps,
-  TextInputMaskTypeProp,
-} from 'react-native-masked-text';
-import Input from '../Input';
+import React, { useRef, useState, useEffect } from 'react';
+import { TextInputMaskProps } from 'react-native-masked-text';
+import { useField } from '@unform/core';
 
-interface InputMaskProps extends TextInputMaskProps {
-  type: TextInputMaskTypeProp;
+import { InputBlock } from './styles';
+
+interface InputProps extends TextInputMaskProps {
   name: string;
 }
 
-const InputMask: React.FC<InputMaskProps> = ({ type, ...rest }) => {
-  const [value, setValue] = useState('');
-  const [rawValue, setRawValue] = useState('');
+interface InputValueReference {
+  value: string;
+}
 
-  const handleOnChangeText = useCallback((maskedValue, unmaskedValue) => {
-    setValue(maskedValue);
-    setRawValue(unmaskedValue);
-  }, []);
+const InputMask: React.FC<InputProps> = ({ name, ...rest }) => {
+  const [mask, setMask] = useState('');
+
+  const inputRef = useRef(null);
+
+  const { fieldName, registerField, defaultValue = '', error } = useField(name);
+  const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputValueRef.current,
+      path: 'value',
+      getValue(ref: any) {
+        return mask;
+      },
+    });
+  }, [fieldName, registerField, mask]);
 
   return (
-    <TextInputMask
-      type={type}
-      includeRawValueInChangeText
-      value={value}
-      onChangeText={handleOnChangeText}
-      customTextInput={Input}
-      customTextInputProps={{
-        rawValue,
-        ...rest,
-      }}
+    <InputBlock
+      ref={inputRef}
+      defaultValue={defaultValue}
+      value={mask}
+      onChangeText={e => setMask(e)}
       {...rest}
     />
   );
 };
+
 export default InputMask;
