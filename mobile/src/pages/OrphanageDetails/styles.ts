@@ -14,7 +14,7 @@ export const ImagesContainer = styled.View`
 export const ImagesContainerScrollView = styled.ScrollView``;
 
 export const ImageView = styled.Image`
-  width: ${Dimensions.get('window').width};
+  width: ${Dimensions.get('window').width}px;
   height: 240px;
 `;
 

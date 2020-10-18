@@ -1,10 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Dimensions, Linking } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Linking,
+  SafeAreaView,
+  View,
+} from 'react-native';
 
 import MapView, { Marker } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import api from '../../services/api';
+import LottieView from 'lottie-react-native';
 
 import mapMarkerImg from '../../images/map-marker.png';
 
@@ -58,10 +65,13 @@ const OrphanageDetails: React.FC = () => {
   const params = route.params as IOrphanageDetailsRouteParams;
 
   const [orphanage, setOrphanage] = useState<IOrphanage>();
+  const [status, setStatus] = useState(true);
 
   useEffect(() => {
     api.get(`orphanages/${params.id}`).then(response => {
       setOrphanage(response.data);
+
+      setStatus(false);
     });
   }, [params.id]);
 
@@ -75,11 +85,13 @@ const OrphanageDetails: React.FC = () => {
     Linking.openURL(`whatsapp://send?phone=${orphanage?.whatsapp}`);
   }, [orphanage]);
 
-  if (!orphanage) {
+  if (status) {
     return (
-      <Container>
-        <Title>Carregando...</Title>
-      </Container>
+      <SafeAreaView
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
+        <ActivityIndicator size="large" color="#15C3D6" />
+      </SafeAreaView>
     );
   }
 
@@ -87,7 +99,7 @@ const OrphanageDetails: React.FC = () => {
     <Container>
       <ImagesContainer>
         <ImagesContainerScrollView horizontal pagingEnabled>
-          {orphanage.images.map(orphanageImage => (
+          {orphanage?.images.map(orphanageImage => (
             <ImageView
               key={orphanageImage.id}
               source={{
@@ -100,14 +112,14 @@ const OrphanageDetails: React.FC = () => {
       </ImagesContainer>
 
       <DetailsContainer>
-        <Title>{orphanage.name}</Title>
-        <Description>{orphanage.about}</Description>
+        <Title>{orphanage?.name}</Title>
+        <Description>{orphanage?.about}</Description>
 
         <MapContainer>
           <MapView
             initialRegion={{
-              latitude: Number(orphanage.latitude),
-              longitude: Number(orphanage.longitude),
+              latitude: Number(orphanage?.latitude),
+              longitude: Number(orphanage?.longitude),
               latitudeDelta: 0.008,
               longitudeDelta: 0.008,
             }}
@@ -123,8 +135,8 @@ const OrphanageDetails: React.FC = () => {
             <Marker
               icon={mapMarkerImg}
               coordinate={{
-                latitude: Number(orphanage.latitude),
-                longitude: Number(orphanage.longitude),
+                latitude: Number(orphanage?.latitude),
+                longitude: Number(orphanage?.longitude),
               }}
             />
           </MapView>
@@ -137,17 +149,17 @@ const OrphanageDetails: React.FC = () => {
         <Separator />
 
         <Title>Instruções para visita</Title>
-        <Description>{orphanage.instructions}</Description>
+        <Description>{orphanage?.instructions}</Description>
 
         <ScheduleContainer>
           <OpeningHours>
             <Feather name="clock" size={40} color="#2AB5D1" />
             <OpeningHoursText>
-              Segunda à Sexta {orphanage.opening_hours}
+              Segunda à Sexta {orphanage?.opening_hours}
             </OpeningHoursText>
           </OpeningHours>
 
-          {orphanage.open_on_weekends ? (
+          {orphanage?.open_on_weekends ? (
             <OpenOnWeekends>
               <Feather name="info" size={40} color="#39CC83" />
               <OpenOnWeekendsText>Atendemos fim de semana</OpenOnWeekendsText>

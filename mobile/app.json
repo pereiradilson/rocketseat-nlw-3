@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Happy",
+    "slug": "happy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#15C3D6"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,10 +17,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.adilsonpereira.happy"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "android": {
+      "package": "br.com.adilsonpereira.happy",
+      "versionCode": 1
     }
   }
 }
