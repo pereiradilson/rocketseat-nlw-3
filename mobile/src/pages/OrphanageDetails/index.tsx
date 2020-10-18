@@ -4,14 +4,12 @@ import {
   Dimensions,
   Linking,
   SafeAreaView,
-  View,
 } from 'react-native';
 
 import MapView, { Marker } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import api from '../../services/api';
-import LottieView from 'lottie-react-native';
 
 import mapMarkerImg from '../../images/map-marker.png';
 

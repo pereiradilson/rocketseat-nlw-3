@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
@@ -19,7 +20,13 @@ const App: React.FC = () => {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return (
+      <SafeAreaView
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
+        <ActivityIndicator size="large" color="#15C3D6" />
+      </SafeAreaView>
+    );
   }
 
   return (
